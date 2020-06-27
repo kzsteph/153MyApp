@@ -4,7 +4,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { Button } from 'react-native-elements';
 import { Formik } from 'formik';
-import greyback from '../assets/greyback.jpg';
+import greyback from '../assets/lightgrey.jpg';
 
 export default function Form({ route,navigation }) {
 
