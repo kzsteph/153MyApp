@@ -50,39 +50,44 @@ function HomeScreen({route,navigation}) {
 
   return (
     <ImageBackground source={greyback} style={styles.backgroundImage}>
-    <View style = {styles.button}>
-    <Button
-      buttonStyle={{backgroundColor: '#008b8b',width:240}}
-      title="Create New Name Card"
-      onPress={() => {
-        navigation.navigate('Name Card Form',{addCard});
-      }}
-    />
-    <FlatList style = {{marginTop:15}}
-      data={cards}
-      keyExtractor={(item, index) => 'key'+index}
-      renderItem={({ item }) => <CardFormat card = {item} deleteItem = {deleteItem}/>} //create a Card.js to regulate the format
-    />
-    </View>
+      <View style = {styles.button}>
+        <Button
+          buttonStyle={{backgroundColor: '#008b8b',width:240}}
+          title="Create New Name Card"
+          onPress={() => {
+            navigation.navigate('Name Card Form',{addCard});
+          }}
+        />
+        <FlatList style = {{marginTop:15}}
+          data={cards}
+          keyExtractor={(item, index) => 'key'+index}
+          renderItem={({ item }) => <CardFormat card = {item} deleteItem = {deleteItem}/>} //create a Card.js to regulate the format
+        />
+      </View>
     </ImageBackground>
   );
 }
 
 function CardFormat({card,deleteItem}) {
   return (
-      <Card>
-
-      <Text style ={styles.cardtext}> Name:{card.name} Year:{card.year}</Text>
-      <Button
-        title = 'delete'
-        buttonStyle={{backgroundColor: 'maroon', height:20, width:200}}
-        onPress={() => {deleteItem(card.key)}}
-      />
-      </Card>
+      <CardWrapper>
+        <Text> Name:{card.name} </Text>
+        <Text> Phone:{card.phone} </Text>
+        <Text> Email:{card.email} </Text>
+        <Text> Address:{card.address} </Text>
+        <Text> School:{card.school} </Text>
+        <Text> Major(s):{card.major} </Text>
+        <Text> Year:{card.year} </Text>
+          <Button style = {styles.button}
+            title = 'delete'
+            buttonStyle={{backgroundColor: 'maroon', height:20, width:200}}
+            onPress={() => {deleteItem(card.key)}}
+          />
+      </CardWrapper>
   );
 }
 
-function Card(props) {
+function CardWrapper(props) {
   return (
     <View style={styles.card}>
       <View style={styles.cardContent}>
@@ -135,7 +140,7 @@ const styles = StyleSheet.create({
   },
   cardContent:{
     marginHorizontal: 18,
-    marginVertical: 12,
+    marginVertical: 19,
   },
   backgroundImage: {
     height:'100%',
